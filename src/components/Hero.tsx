@@ -1,111 +1,118 @@
 "use client";
 
 import { motion } from "framer-motion";
-import MagneticButton from "./MagneticButton";
 import Link from "next/link";
-import { ArrowRight, Activity, Cpu, ShieldCheck } from "lucide-react";
+import { ArrowRight, Activity, ShieldCheck, HeartPulse } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
-      {/* Background Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-secondary/20 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-brand-primary/10 blur-[150px] rounded-full pointer-events-none" />
-      
-      <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-        {/* Left Column: Text */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-subtle-grid">
+      {/* Soft Ambient Pastel Glows matching Mindly aesthetic */}
+      <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[720px] h-[460px] bg-gradient-to-tr from-purple-200/40 via-amber-100/35 to-rose-100/30 blur-[100px] rounded-full pointer-events-none -z-10" />
+
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        {/* Company Name Tag */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="flex flex-col items-start text-left"
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-stone-200/80 text-stone-700 text-xs font-medium mb-8 shadow-sm backdrop-blur-sm"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-secondary/30 bg-brand-secondary/10 text-brand-secondary text-sm font-medium mb-6">
-            <span className="w-2 h-2 rounded-full bg-brand-secondary animate-pulse" />
-            Empowering Digital Health Mission
-          </div>
-          
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight">
-            Smart, Affordable & <br />
-            <span className="text-gradient">Scalable Healthcare.</span>
-          </h1>
-          
-          <p className="text-lg text-slate-300 max-w-xl mb-10 leading-relaxed font-light">
-            Integrating IoT, AI, and data analytics into healthcare systems for real-time monitoring, predictive diagnosis, and secure decision support.
-          </p>
-          
-          <div className="flex flex-wrap gap-6 items-center">
-            <MagneticButton intensity={0.2}>
-              <Link href="#solutions" className="group relative px-8 py-4 bg-foreground text-background font-medium rounded-full overflow-hidden flex items-center gap-2">
-                <span className="relative z-10">Discover Solutions</span>
-                <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-                <div className="absolute inset-0 bg-brand-tertiary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left ease-out duration-300" />
-              </Link>
-            </MagneticButton>
-            
-            <Link href="#about" className="px-6 py-4 text-slate-300 hover:text-white font-medium transition-colors">
-              Our Vision
-            </Link>
-          </div>
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span>TANTRAJEEVAN AROGINI PVT LTD</span>
         </motion.div>
 
-        {/* Right Column: Visual abstract representation */}
-        <div className="relative h-[600px] w-full flex items-center justify-center lg:justify-end hidden md:flex">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
-            className="relative w-full max-w-[500px] aspect-square"
+        {/* Main Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="font-serif text-4xl sm:text-6xl md:text-7xl text-stone-900 font-normal tracking-tight leading-[1.12] mb-6"
+        >
+          Smart, Affordable &amp; <br className="hidden sm:block" />
+          <span className="italic font-normal">Scalable Healthcare Technologies</span>
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-stone-600 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed mb-10"
+        >
+          Improving the accessibility and quality of healthcare services by integrating IoT,
+          AI, and data analytics into clinical systems for real-time monitoring, predictive
+          diagnosis, and secure decision support.
+        </motion.p>
+
+        {/* Direct Action Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-wrap items-center justify-center gap-4 mb-16"
+        >
+          <Link
+            href="#main-objectives"
+            className="bg-stone-900 hover:bg-stone-800 text-white font-medium text-sm px-7 py-3.5 rounded-full transition-all shadow-md hover:shadow-lg flex items-center gap-2 group"
           >
-            {/* Central abstract element */}
-            <div className="absolute inset-0 border-[1px] border-brand-secondary/20 rounded-full animate-[spin_60s_linear_infinite]" />
-            <div className="absolute inset-[10%] border-[1px] border-brand-primary/20 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
-            <div className="absolute inset-[20%] border-[1px] border-brand-tertiary/30 rounded-full border-dashed animate-[spin_50s_linear_infinite]" />
-            
-            {/* Floating feature cards */}
-            <motion.div 
-              animate={{ y: [-10, 10, -10] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-[15%] left-0 glass-panel p-4 rounded-2xl flex items-center gap-4"
-            >
-              <div className="p-3 bg-brand-secondary/20 rounded-xl text-brand-secondary">
-                <Activity className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="text-xs text-slate-400 font-medium">Real-time</p>
-                <p className="text-sm text-foreground font-semibold">Monitoring</p>
-              </div>
-            </motion.div>
+            <span>Explore Main Objectives</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </Link>
+          <Link
+            href="#ancillary-objectives"
+            className="bg-white hover:bg-stone-50 text-stone-700 font-medium text-sm px-6 py-3.5 rounded-full border border-stone-200/80 transition-all shadow-sm"
+          >
+            Ancillary Vision
+          </Link>
+        </motion.div>
 
-            <motion.div 
-              animate={{ y: [10, -10, 10] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute top-[40%] right-[-5%] glass-panel p-4 rounded-2xl flex items-center gap-4"
-            >
-              <div className="p-3 bg-brand-primary/20 rounded-xl text-brand-primary">
-                <Cpu className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="text-xs text-slate-400 font-medium">AI-driven</p>
-                <p className="text-sm text-foreground font-semibold">Diagnostics</p>
-              </div>
-            </motion.div>
+        {/* 3 Overview Highlight Cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="grid md:grid-cols-3 gap-5 text-left max-w-4xl mx-auto"
+        >
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-stone-200/70 shadow-sm">
+            <div className="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4">
+              <HeartPulse className="w-5 h-5" />
+            </div>
+            <h3 className="font-serif text-lg text-stone-900 font-medium mb-2">
+              Accessible &amp; Scalable
+            </h3>
+            <p className="text-xs text-stone-500 font-light leading-relaxed">
+              Democratizing medical technology so that high-quality diagnosis is affordable and
+              available everywhere.
+            </p>
+          </div>
 
-            <motion.div 
-              animate={{ y: [-8, 8, -8] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-              className="absolute bottom-[15%] left-[20%] glass-panel p-4 rounded-2xl flex items-center gap-4"
-            >
-              <div className="p-3 bg-brand-accent/20 rounded-xl text-brand-accent">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="text-xs text-slate-400 font-medium">Secure & Compliant</p>
-                <p className="text-sm text-foreground font-semibold">Cloud Platform</p>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
+          <div className="bg-white rounded-3xl p-6 border border-purple-200 shadow-md shadow-purple-900/5 relative">
+            <div className="w-10 h-10 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center mb-4">
+              <Activity className="w-5 h-5" />
+            </div>
+            <h3 className="font-serif text-lg text-stone-900 font-medium mb-2">
+              IoT &amp; Predictive AI
+            </h3>
+            <p className="text-xs text-stone-500 font-light leading-relaxed">
+              Real-time monitoring and machine learning models for proactive chronic disease
+              management.
+            </p>
+          </div>
+
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-stone-200/70 shadow-sm">
+            <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <h3 className="font-serif text-lg text-stone-900 font-medium mb-2">
+              Secure Cloud &amp; Telehealth
+            </h3>
+            <p className="text-xs text-stone-500 font-light leading-relaxed">
+              Confidential, standards-compliant health data platforms reaching underserved rural
+              populations.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

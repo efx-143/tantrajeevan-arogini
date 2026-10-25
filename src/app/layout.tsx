@@ -1,30 +1,43 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Plus_Jakarta_Sans, Newsreader } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 
-const inter = Inter({
-  variable: "--font-inter",
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const newsreader = Newsreader({
+  variable: "--font-serif",
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Tantrajeevan Arogini | Smart Healthcare Technology",
-  description: "Smart, affordable, and scalable healthcare technologies that improve accessibility and quality of healthcare services.",
+  description:
+    "Smart, affordable, and scalable healthcare technologies that improve accessibility and quality of healthcare services.",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/logo.svg",
+  },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${outfit.variable} h-full antialiased`}
+      className={`${plusJakarta.variable} ${newsreader.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-background text-foreground overflow-x-hidden selection:bg-brand-primary/30">
+      <body className="min-h-full flex flex-col font-sans bg-[#fbfaf8] text-[#1e1e24] overflow-x-hidden selection:bg-purple-200 selection:text-purple-950">
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

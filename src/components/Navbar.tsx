@@ -1,60 +1,123 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import MagneticButton from "./MagneticButton";
-import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
+import Logo from "./Logo";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
-        scrolled 
-          ? "bg-background/80 backdrop-blur-md border-white/10 py-4" 
-          : "bg-transparent py-6"
-      )}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-[#fbfaf8]/90 backdrop-blur-md border-b border-stone-200/60 py-3 shadow-[0_2px_12px_rgba(0,0,0,0.03)]"
+          : "bg-transparent py-5"
+      }`}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-secondary to-brand-primary flex items-center justify-center">
-            <span className="text-white font-bold text-xl leading-none">T</span>
+      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        {/* Brand Logo */}
+        <Link href="/" className="flex items-center gap-3 group">
+          <Logo size={38} />
+          <div className="flex flex-col">
+            <span className="font-serif text-lg sm:text-xl font-medium tracking-tight text-stone-900 group-hover:text-purple-700 transition-colors leading-tight">
+              Tantrajeevan Arogini
+            </span>
+            <span className="text-[10px] text-stone-500 font-sans tracking-wider uppercase">
+              Healthcare Technology
+            </span>
           </div>
-          <span className="font-heading font-bold text-xl tracking-wide hidden sm:block">
-            TANTRAJEEVAN AROGINI
-          </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-          <Link href="#objectives" className="hover:text-white transition-colors">Objectives</Link>
-          <Link href="#technology" className="hover:text-white transition-colors">Technology</Link>
-          <Link href="#impact" className="hover:text-white transition-colors">Impact</Link>
-          <Link href="#rd" className="hover:text-white transition-colors">R&D</Link>
+        {/* Center Nav Links */}
+        <nav className="hidden md:flex items-center gap-8 text-sm text-stone-600 font-medium">
+          <Link
+            href="#main-objectives"
+            className="hover:text-stone-900 transition-colors"
+          >
+            Main Objectives
+          </Link>
+          <Link
+            href="#ancillary-objectives"
+            className="hover:text-stone-900 transition-colors"
+          >
+            Ancillary Objectives
+          </Link>
+          <Link
+            href="#about"
+            className="hover:text-stone-900 transition-colors"
+          >
+            About &amp; Mission
+          </Link>
         </nav>
 
-        <div className="flex items-center gap-4">
-          <MagneticButton intensity={0.1}>
-            <Link 
-              href="#contact" 
-              className="px-5 py-2.5 rounded-full border border-brand-secondary/30 text-brand-secondary text-sm font-medium hover:bg-brand-secondary/10 transition-colors"
-            >
-              Contact Us
-            </Link>
-          </MagneticButton>
+        {/* Right CTA Button */}
+        <div className="hidden sm:flex items-center gap-4 text-sm font-medium">
+          <Link
+            href="#contact"
+            className="bg-stone-900 hover:bg-stone-800 text-white px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all shadow-sm hover:shadow"
+          >
+            Contact Us
+          </Link>
+        </div>
+
+        {/* Mobile menu button */}
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 text-stone-700"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
+          </button>
         </div>
       </div>
-    </motion.header>
+
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-[#fbfaf8] border-b border-stone-200 px-6 py-6 flex flex-col gap-4 text-sm font-medium text-stone-700">
+          <Link
+            href="#main-objectives"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-1 hover:text-purple-700"
+          >
+            Main Objectives
+          </Link>
+          <Link
+            href="#ancillary-objectives"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-1 hover:text-purple-700"
+          >
+            Ancillary Objectives
+          </Link>
+          <Link
+            href="#about"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-1 hover:text-purple-700"
+          >
+            About &amp; Mission
+          </Link>
+          <Link
+            href="#contact"
+            onClick={() => setMobileMenuOpen(false)}
+            className="mt-2 text-center py-2.5 bg-stone-900 text-white rounded-full font-semibold"
+          >
+            Contact Us
+          </Link>
+        </div>
+      )}
+    </header>
   );
 }

@@ -1,90 +1,123 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { HeartPulse, Stethoscope, Smartphone, Lock, Cloud, Brain, Activity } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  HeartPulse,
+  Cpu,
+  Activity,
+  ShieldCheck,
+  TrendingDown,
+  MapPin,
+  Sparkles,
+} from "lucide-react";
 
 const mainObjectives = [
   {
-    title: "Accessibility & Quality",
-    desc: "Smart, affordable, and scalable healthcare technologies that improve accessibility and quality of services.",
-    icon: <HeartPulse className="w-6 h-6 text-brand-secondary" />
+    num: "01",
+    title: "Smart, Affordable & Scalable Technologies",
+    text: "To design and develop smart, affordable, and scalable healthcare technologies that improve accessibility and quality of healthcare services.",
+    icon: <HeartPulse className="w-6 h-6 text-purple-600" />,
+    badgeBg: "bg-purple-50 text-purple-700",
   },
   {
-    title: "IoT & AI Integration",
-    desc: "Real-time monitoring, diagnosis, and decision support via IoT, AI, and data analytics.",
-    icon: <Brain className="w-6 h-6 text-brand-primary" />
+    num: "02",
+    title: "IoT, AI & Data Analytics Integration",
+    text: "To integrate IoT, AI, and data analytics into healthcare systems for real-time monitoring, diagnosis, and decision support.",
+    icon: <Cpu className="w-6 h-6 text-amber-600" />,
+    badgeBg: "bg-amber-50 text-amber-700",
   },
   {
-    title: "Predictive Models",
-    desc: "AI-driven diagnostic and predictive models for effective chronic disease management.",
-    icon: <Activity className="w-6 h-6 text-brand-accent" />
+    num: "03",
+    title: "AI-Driven Predictive Models",
+    text: "To create AI-driven diagnostic and predictive models for chronic disease management.",
+    icon: <Activity className="w-6 h-6 text-rose-600" />,
+    badgeBg: "bg-rose-50 text-rose-700",
   },
   {
-    title: "Secure Cloud Platform",
-    desc: "Ensuring privacy, confidentiality, and compliance with secure cloud-based health data platforms.",
-    icon: <Cloud className="w-6 h-6 text-brand-tertiary" />
+    num: "04",
+    title: "Secure Cloud-Based Health Data Platforms",
+    text: "To implement secure cloud-based health data platforms, ensuring privacy, confidentiality, and compliance with healthcare standards.",
+    icon: <ShieldCheck className="w-6 h-6 text-emerald-600" />,
+    badgeBg: "bg-emerald-50 text-emerald-700",
   },
   {
-    title: "Remote Delivery",
-    desc: "Reducing healthcare costs by minimizing unnecessary hospital visits through remote delivery.",
-    icon: <Smartphone className="w-6 h-6 text-brand-secondary" />
+    num: "05",
+    title: "Remote Delivery & Healthcare Cost Reduction",
+    text: "To reduce healthcare costs by enabling remote healthcare delivery and minimizing unnecessary hospital visits.",
+    icon: <TrendingDown className="w-6 h-6 text-blue-600" />,
+    badgeBg: "bg-blue-50 text-blue-700",
   },
   {
-    title: "Rural Telehealth",
-    desc: "Improving healthcare access in rural and underserved areas via mobile and telehealth solutions.",
-    icon: <Stethoscope className="w-6 h-6 text-brand-primary" />
-  }
+    num: "06",
+    title: "Rural & Underserved Area Healthcare Access",
+    text: "To improve healthcare access in rural and underserved areas through mobile and telehealth solutions.",
+    icon: <MapPin className="w-6 h-6 text-teal-600" />,
+    badgeBg: "bg-teal-50 text-teal-700",
+  },
 ];
 
 export default function Objectives() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-
   return (
-    <section id="objectives" ref={containerRef} className="py-32 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      
-      <div className="container mx-auto px-6">
-        <div className="max-w-3xl mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Pioneering the Future of <br className="hidden md:block" />
-            <span className="text-gradient-subtle">Digital Health.</span>
+    <section id="main-objectives" className="py-24 bg-[#fbfaf8] relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-xs font-semibold uppercase tracking-wider mb-4">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Foundational Pillars</span>
+          </div>
+
+          <h2 className="font-serif text-3xl sm:text-5xl text-stone-900 font-normal tracking-tight mb-4">
+            Main Objectives
           </h2>
-          <p className="text-slate-400 text-lg font-light leading-relaxed">
-            Our main objectives drive us to create an ecosystem where advanced technology 
-            meets human-centric healthcare, making premium medical services accessible to all.
+          <p className="text-stone-500 text-sm sm:text-base font-light leading-relaxed">
+            Our core mission is structured around six key objectives aimed at redefining healthcare
+            delivery, accessibility, and clinical precision.
           </p>
         </div>
 
+        {/* 6 Main Objectives Grid (Clean 2x3 layout) */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {mainObjectives.map((obj, i) => (
             <motion.div
-              key={i}
+              key={obj.num}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass-panel p-8 rounded-3xl hover:bg-white/[0.02] transition-colors group"
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="bg-white rounded-3xl p-8 border border-stone-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group"
             >
-              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                {obj.icon}
+              <div>
+                {/* Header row: Number badge + Icon */}
+                <div className="flex items-center justify-between mb-6">
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${obj.badgeBg}`}>
+                    Objective {obj.num}
+                  </span>
+                  <div className="w-11 h-11 rounded-2xl bg-stone-50 border border-stone-100 flex items-center justify-center group-hover:scale-105 transition-transform">
+                    {obj.icon}
+                  </div>
+                </div>
+
+                {/* Title */}
+                <h3 className="font-serif text-xl text-stone-900 font-medium mb-3 leading-snug">
+                  {obj.title}
+                </h3>
+
+                {/* Exact Objective Statement */}
+                <p className="text-stone-600 text-sm font-light leading-relaxed">
+                  {obj.text}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-white">{obj.title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">{obj.desc}</p>
+
+              {/* Bottom Subtle Indicator */}
+              <div className="pt-6 mt-6 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-400">
+                <span>Tantrajeevan Priority</span>
+                <span className="font-medium text-stone-700">Active Blueprint</span>
+              </div>
             </motion.div>
           ))}
         </div>
       </div>
-
-      <motion.div style={{ y }} className="absolute -right-[20%] top-[20%] w-[800px] h-[800px] bg-brand-primary/5 blur-[100px] rounded-full pointer-events-none -z-10" />
     </section>
   );
 }
